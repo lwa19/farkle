@@ -8,4 +8,12 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+Welcome to my research website. 
+
+- Simulate [Farkle](https://cardgames.io/farkle/) game: [link](sim.html)
+
+- Derive the probability of each meld
+
+- When to reroll? 
+
+- play-for-me bot

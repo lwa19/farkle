@@ -1,0 +1,55 @@
+---
+title: "sim"
+author: "lwa19"
+date: "2022-09-01"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+For each # of dice we can reroll, simulate all possible outcomes and their score outcome
+
+## Scoring scheme: 
+
+Input the dice roll results, give the possible dice rolls and the total number of points
+
+```{r}
+# auxiliary functions: 
+
+## three pairs: vector must be length 6 and ORDERED
+three_pairs <- function(vec){
+  if ((vec[1] ==  vec[2]) & (vec[3] = vec[4]) 
+      & (vec[5] == vec[6])) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+  
+}
+```
+
+
+
+```{r score}
+# input "rolls" as a vector
+score <- function(rolls) {
+  nrolls <- length(rolls)
+  ord_rl <- sort(rolls)
+  num_uniq <- length(unique(nrolls))
+  
+  # test for full run: 
+  if (nrolls == 6) {
+    if (ord_rl == 1:6) {
+      return('full run: 2500')
+    } else if (num_uniq == 1) {
+      return('six of a kind: 3000')
+    } else if (num_uniq == 3 & three_pairs(ord_rl)) {
+      print('three pairs: 1500')
+    }
+  } 
+}
+
+```
+
