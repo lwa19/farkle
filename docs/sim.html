@@ -512,15 +512,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree55a32f0c86c6a51ff4926e97297e5c479a722936targetblank55a32f0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009targetblank49f6aeca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lwa19/farkle/tree/55a32f0c86c6a51ff4926e97297e5c479a722936" target="_blank">55a32f0</a>
+<a href="https://github.com/lwa19/farkle/tree/49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009" target="_blank">49f6aec</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree55a32f0c86c6a51ff4926e97297e5c479a722936targetblank55a32f0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009targetblank49f6aeca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -530,7 +530,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lwa19/farkle/tree/55a32f0c86c6a51ff4926e97297e5c479a722936" target="_blank">55a32f0</a>.
+<a href="https://github.com/lwa19/farkle/tree/49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009" target="_blank">49f6aec</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -544,7 +544,12 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-working directory clean
+Untracked files:
+    Untracked:  analysis/strat.Rmd
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -588,6 +593,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/farkle/blob/49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009/analysis/sim.Rmd" target="_blank">49f6aec</a>
+</td>
+<td>
+lwa19
+</td>
+<td>
+2022-09-02
+</td>
+<td>
+calculated farkle rates
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/farkle/4cade07f09d3432e2e96e9547a952a8cba755cdc/docs/sim.html" target="_blank">4cade07</a>
+</td>
+<td>
+lwa19
+</td>
+<td>
+2022-09-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1034,6 +1073,30 @@ for (d in dice) {
 <li>five dice: 200</li>
 <li>six dice: 400</li>
 </ul>
+</div>
+<div id="chance-of-farkling-for-each-of-dice-rolls"
+class="section level2">
+<h2>Chance of farkling, for each # of dice rolls:</h2>
+<pre class="r"><code>dice = 1:6
+
+for (d in dice) {
+  nsim = 10000
+  nfarkle = 0
+  for (i in 1:nsim) {
+    rolls = sample(6, d, replace = T)
+    sc = score(rolls)
+    if (sc == 0) {
+      nfarkle = nfarkle + 1
+    }
+  }
+  print(paste(d, &#39;dice roll has average farkle rate:&#39;, nfarkle / nsim))
+}</code></pre>
+<pre><code>[1] &quot;1 dice roll has average farkle rate: 0.6606&quot;
+[1] &quot;2 dice roll has average farkle rate: 0.4442&quot;
+[1] &quot;3 dice roll has average farkle rate: 0.2769&quot;
+[1] &quot;4 dice roll has average farkle rate: 0.1624&quot;
+[1] &quot;5 dice roll has average farkle rate: 0.0843&quot;
+[1] &quot;6 dice roll has average farkle rate: 0.0263&quot;</code></pre>
 <p>Clearly the superior method would be to derive everything, but that’s
 a problem for tomorrow Leah.</p>
 <br>
