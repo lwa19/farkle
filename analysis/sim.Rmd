@@ -392,5 +392,24 @@ Results (an estimate):
 - five dice: 200
 - six dice: 400
 
+## Chance of farkling, for each # of dice rolls: 
+
+```{r}
+dice = 1:6
+
+for (d in dice) {
+  nsim = 10000
+  nfarkle = 0
+  for (i in 1:nsim) {
+    rolls = sample(6, d, replace = T)
+    sc = score(rolls)
+    if (sc == 0) {
+      nfarkle = nfarkle + 1
+    }
+  }
+  print(paste(d, 'dice roll has average farkle rate:', nfarkle / nsim))
+}
+```
+
 Clearly the superior method would be to derive everything, but that's a problem for tomorrow Leah. 
 
