@@ -12,7 +12,7 @@ Welcome to my research website.
 
 - Simulate [Farkle](https://cardgames.io/farkle/) game: [link](sim.html)
 
-- Derive the probability of each meld
+- Derive the probability of each meld (depriortized)
 
 - When to reroll? [link](strat.html)
 
