@@ -512,15 +512,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009targetblank49f6aeca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree2e790d7032872e411793778b5f037c6cb02356e2targetblank2e790d7a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lwa19/farkle/tree/49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009" target="_blank">49f6aec</a>
+<a href="https://github.com/lwa19/farkle/tree/2e790d7032872e411793778b5f037c6cb02356e2" target="_blank">2e790d7</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009targetblank49f6aeca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlwa19farkletree2e790d7032872e411793778b5f037c6cb02356e2targetblank2e790d7a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -530,7 +530,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lwa19/farkle/tree/49f6aec4eaa4ad875e47e1ec47ca7582f3d6f009" target="_blank">49f6aec</a>.
+<a href="https://github.com/lwa19/farkle/tree/2e790d7032872e411793778b5f037c6cb02356e2" target="_blank">2e790d7</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -593,6 +593,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lwa19/farkle/blob/2e790d7032872e411793778b5f037c6cb02356e2/analysis/sim.Rmd" target="_blank">2e790d7</a>
+</td>
+<td>
+lwa19
+</td>
+<td>
+2022-09-02
+</td>
+<td>
+fixed bug in score fn
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lwa19/farkle/0823db0fac03c1c107083875dc26459ff81c202e/docs/sim.html" target="_blank">0823db0</a>
+</td>
+<td>
+lwa19
+</td>
+<td>
+2022-09-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -753,7 +787,7 @@ score &lt;- function(rolls) {
           curr = curr + 1000
           ret_string = paste0(ret_string, &#39;triple 1&#39;)
         } else {
-          curr = curr + ord_rl[id] * 100
+          curr = curr + unique(ord_rl)[id] * 100
           ret_string = paste0(ret_string, &#39;triple&#39;, df$ord_rl[id])
         }
       }
@@ -825,7 +859,7 @@ score &lt;- function(rolls) {
         curr = curr + 1000
         ret_string = paste0(ret_string, &#39;triple 1&#39;)
       } else {
-        curr = curr + ord_rl[triple_id] * 100
+        curr = curr + unique(ord_rl)[triple_id] * 100
         ret_string = paste0(ret_string, &#39;triple&#39;, df$ord_rl[triple_id])
       }
       
@@ -882,7 +916,7 @@ score &lt;- function(rolls) {
         curr = curr + 1000
         ret_string = paste0(ret_string, &#39;triple 1&#39;)
       } else {
-        curr = curr + ord_rl[triple_id] * 100
+        curr = curr + unique(ord_rl)[triple_id] * 100
         ret_string = paste0(ret_string, &#39;triple&#39;, df$ord_rl[triple_id])
       }
       
@@ -934,7 +968,7 @@ score &lt;- function(rolls) {
         curr = curr + 1000
         ret_string = paste0(ret_string, &#39;triple 1&#39;)
       } else {
-        curr = curr + ord_rl[triple_id] * 100
+        curr = curr + unique(ord_rl)[triple_id] * 100
         ret_string = paste0(ret_string, &#39;triple&#39;, df$ord_rl[triple_id])
       }
     
@@ -1062,8 +1096,8 @@ for (d in dice) {
 [1] &quot;2 dice roll has average score: 49.675&quot;
 [1] &quot;3 dice roll has average score: 88.695&quot;
 [1] &quot;4 dice roll has average score: 142.585&quot;
-[1] &quot;5 dice roll has average score: 206.53&quot;
-[1] &quot;6 dice roll has average score: 410.535&quot;</code></pre>
+[1] &quot;5 dice roll has average score: 210.95&quot;
+[1] &quot;6 dice roll has average score: 425.765&quot;</code></pre>
 <p>Results (an estimate):</p>
 <ul>
 <li>one die: 25</li>
