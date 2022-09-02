@@ -1,0 +1,113 @@
+---
+title: "strat"
+author: "lwa19"
+date: "2022-09-02"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+### First roll (6 dice)
+
+If we roll, we have a chance of getting score >= 0, with the alternative scoring 0 points. We always roll (obviously), and assume we did not farkle and get s1 > 0. 
+
+### Second roll (<= 5 dice)
+
+Scenario 1: If we roll, we have a chance of getting score >= 0 (s2). If s2 = 0, however, we bust and our total score (S) goes to 0. If s2 > 0, our cumulative score bumps to S = s1 + s2 > s1.  
+
+Scenario 2: If we don't roll, we get to bank our score, which will lead us to S = s1. 
+
+Naturally, we see that we want to compare the expected score for scenario 1 and 2. If scenario 1 yields a higher score than s1, then we should roll. To sum it up, we want to know if the expected value of scenario 1 is greater than s1. 
+
+### Hot dice scenario
+
+Scenario 1: If we roll, we have a chance of getting score s2 >= 0. But instead of rolling <= 5 dice, we are rolling 6 dice. It is almost always better to roll since the farkle rate for 6 dice is so low. 
+
+Scenario 2: If we don't roll, we bank our current hot dice score. S = s1. 
+
+
+## Create farkle logic: 
+
+```{r}
+# s1 indicates current bankable score; ndice is the number of rollable dice. 
+farkle = function(s1, ndice) {
+  pf = c(0.66, 0.44, 0.28, 0.16, 0.08, 0.03)
+  avg_sc = c(25, 50, 85, 140, 200, 400)
+  
+  # Expected scenario 1 score: 
+  sc1 = (1 - pf[ndice]) * (avg_sc[ndice] + s1)
+  if (sc1 > s1) {
+    print('roll')
+    return(TRUE)
+  } else {
+    print('do not roll')
+    return(FALSE)
+  }
+}
+```
+
+Examples: 
+
+```{r}
+source('code/score.R')
+# leah turn 1
+rolls = c(1,2,4,5, 4, 4)
+score(rolls) # 550
+farkle(550, 1) # do not roll
+
+# bill turn 1
+rolls = c(1, 1, 2, 3, 6, 6)
+score(rolls) # 200
+farkle(200, 4) # roll, Bill rolled. farkled
+
+# leah turn 2
+rolls = c(5, 6, 3, 2, 5, 2)
+score(rolls) # 100
+farkle(100, 4) # roll, rolled
+rolls2 = c(1,3, 3, 6)
+score(rolls2) #100
+farkle(200, 3) # roll, rolled
+rolls3 = c(5, 3, 4)
+score(rolls3) # 50
+farkle(250, 2) # do not roll. Total 250
+
+# bill turn 2
+# hot dice twice, I think 2 three pairs? subtotal3000
+rolls = c(1,1,2,3,4,6) 
+score(rolls) # 200
+farkle(3000, 4) # do not roll, Bill did not roll. 
+
+# Leah turn 3
+rolls = c(5, 4, 1, 4, 3, 4)
+score(rolls) # 550
+farkle(550, 1) # do not roll. 
+
+# bill turn 3
+rolls = c(1, 2, 3, 3, 5, 5)
+score(rolls) # 200 
+farkle(200, 4) # roll, Bill rolled and farkled
+
+# Leah turn 4
+rolls = c(6, 1, 6, 2, 2, 6)
+score(rolls) # 700
+farkle(700, 2) # do not roll
+
+# bill turn 4
+rolls = c(1,1,1,1,5,6)
+score(rolls) # 1450
+farkle(1450, 2) # do not roll. Bill banks
+
+# leah turn 5
+rolls = c(1, 5, 1, 4, 3, 1)
+score(rolls) # 1050
+farkle(1050, 2) # do not roll
+```
+
+I got bored but from the examples, we see that Bill always follows our farkle logic. If both Bill and player follows the farkle logic, then who wins should really come down to luck. But is Bill's logic more complicated than this? i.e. Are there any instances where Bill choose to not bank some combos in hopes of higher points from rolling more remaining dice? Is it possible to score higher points that way? 
+
+
+## Additional comments: 
+
+What is the tradeoff between banking and rerolling bankable dice? i.e. if you get 2 1s and 2 5's, is it worth to bank the 1s and reroll the 5s? 
