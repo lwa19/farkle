@@ -74,7 +74,7 @@ score <- function(rolls) {
           curr = curr + 1000
           ret_string = paste0(ret_string, 'triple 1')
         } else {
-          curr = curr + ord_rl[id] * 100
+          curr = curr + unique(ord_rl)[id] * 100
           ret_string = paste0(ret_string, 'triple', df$ord_rl[id])
         }
       }
@@ -146,7 +146,7 @@ score <- function(rolls) {
         curr = curr + 1000
         ret_string = paste0(ret_string, 'triple 1')
       } else {
-        curr = curr + ord_rl[triple_id] * 100
+        curr = curr + unique(ord_rl)[triple_id] * 100
         ret_string = paste0(ret_string, 'triple', df$ord_rl[triple_id])
       }
       
@@ -203,7 +203,7 @@ score <- function(rolls) {
         curr = curr + 1000
         ret_string = paste0(ret_string, 'triple 1')
       } else {
-        curr = curr + ord_rl[triple_id] * 100
+        curr = curr + unique(ord_rl)[triple_id] * 100
         ret_string = paste0(ret_string, 'triple', df$ord_rl[triple_id])
       }
       
@@ -255,7 +255,7 @@ score <- function(rolls) {
         curr = curr + 1000
         ret_string = paste0(ret_string, 'triple 1')
       } else {
-        curr = curr + ord_rl[triple_id] * 100
+        curr = curr + unique(ord_rl)[triple_id] * 100
         ret_string = paste0(ret_string, 'triple', df$ord_rl[triple_id])
       }
     
